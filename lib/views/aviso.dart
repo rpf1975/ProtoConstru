@@ -8,9 +8,14 @@ class AvisoPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          margin: EdgeInsets.only(
+            left: 20,
+            right: 20
+          ),
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     onPressed: () => {}, 
@@ -27,7 +32,7 @@ class AvisoPage extends StatelessWidget {
                   ),
                   //TODO: IMAGE
                   Image(
-                    image: AssetImage(""),
+                    image: AssetImage("assets/maquina.png"),
                   )
                 ],
               ),
@@ -44,7 +49,7 @@ class AvisoPage extends StatelessWidget {
                     Container(
                       // TODO: IMAGE
                       child: Image(
-                        image: AssetImage(""),
+                        image: AssetImage("assets/constructor.png"),
                       ),
                     ),
                     SizedBox(height: 50,),
@@ -60,8 +65,22 @@ class AvisoPage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(""),
-                        )
+                          image: AssetImage("assets/reciclar 1.png"),
+                        ),
+                        SizedBox(height: 20,),
+                        Text("Revisar"),
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => {},
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage("assets/remove 1.png"),
+                        ),
+                        SizedBox(height: 20,),
+                        Text("Descartar"),
                       ],
                     ),
                   )
