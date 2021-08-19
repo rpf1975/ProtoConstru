@@ -25,12 +25,47 @@ class AvisoPage extends StatelessWidget {
                       Text("Talcahuano")
                     ],
                   ),
-                  //IMAGE
-                  AssetImage("")
+                  //TODO: IMAGE
+                  Image(
+                    image: AssetImage(""),
+                  )
                 ],
               ),
               SizedBox(
                 height: 30,
+              ),
+              Text("¡Tenemos Nuevos retiros para ti!"),
+              SizedBox(
+                height: 30,
+              ),
+              Card(
+                child: Column(
+                  children: [
+                    Container(
+                      // TODO: IMAGE
+                      child: Image(
+                        image: AssetImage(""),
+                      ),
+                    ),
+                    SizedBox(height: 50,),
+                    Text("200 Potenciales kilos para su retiro")
+                  ],
+                ),
+              ),
+              SizedBox(height: 100,),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => {},
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage(""),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               )
             ],
           ),
