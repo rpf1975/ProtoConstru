@@ -28,9 +28,13 @@ class AvisoPage extends StatelessWidget {
                   //IMAGE
                   AssetImage("")
                 ],
+              ),
+              SizedBox(
+                height: 30,
               )
             ],
           ),
+          
         ),
       ),
     );
