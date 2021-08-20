@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -16,19 +17,44 @@ class _MapaPageState extends State<MapaPage> {
   LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
   GoogleMapController? _controller;
   Location _location = Location();
-
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   void _onMapCreated(GoogleMapController _cntlr)
   {
     _controller = _cntlr;
     _location.onLocationChanged.listen((l) { 
+      if(markers.length > 4){return;}
+      double finalLat = l.latitude! + Random().nextInt(10)/100;
+      double finalLong = l.longitude! + Random().nextInt(10)/100;
+      if(markers.length <= 0){
+        _add(l.latitude!, l.longitude!);
+      }
+      _add(finalLat, finalLong);
       _controller!.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude!, l.longitude!),zoom: 15),
+          CameraPosition(target: LatLng(l.latitude! + (finalLat- l.latitude!), l.longitude! + (finalLong- l.longitude!)),zoom: 11),
           ),
       );
     });
   }
+
+  void _add(double latitude, double longitude) {
+    var markerIdVal = UniqueKey().toString();
+    final MarkerId markerId = MarkerId(markerIdVal);
+
+    // creating a new MARKER
+    final Marker marker = Marker(
+      markerId: markerId,
+      position: LatLng(
+        latitude, longitude
+      ),
+    );
+
+    setState(() {
+      // adding a new marker to map
+      markers[markerId] = marker;
+    });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +65,7 @@ class _MapaPageState extends State<MapaPage> {
         mapType: MapType.normal,
         onMapCreated: _onMapCreated,
         myLocationEnabled: true,
-        markers: {
-          Marker(
-            markerId: MarkerId("A"),
-            position: LatLng(-36.820133, -73.044388)
-          )
-        },
+        markers: Set<Marker>.of(markers.values)
 
       ),
     );
