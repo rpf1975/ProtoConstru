@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_applicatio_prototipo_extremo/classes/item_result.dart';
 import 'package:flutter_applicatio_prototipo_extremo/views/horario.dart';
+import 'package:flutter_applicatio_prototipo_extremo/views/mapa.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({ Key? key, required this.items}) : super(key: key);
@@ -61,7 +62,7 @@ class CartPage extends StatelessWidget {
               ),
               Column(children: itemsList,),
               SizedBox(height: 80),
-              TextButton(onPressed: () => {}, child: Text("Solicitar Ubicación")),
+              TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (__) => MapaPage())), child: Text("Solicitar Ubicación")),
               SizedBox(height: 100,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
