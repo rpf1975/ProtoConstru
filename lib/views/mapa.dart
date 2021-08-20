@@ -68,6 +68,11 @@ class _MapaPageState extends State<MapaPage> {
         markers: Set<Marker>.of(markers.values)
 
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pop(),
+        child: Icon(Icons.arrow_back),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat
     );
   }
 }

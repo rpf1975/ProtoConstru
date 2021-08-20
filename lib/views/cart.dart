@@ -50,43 +50,49 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(onPressed: () => {}, icon: Icon(Icons.arrow_left)),
-                  Text("Tu carro ecológico"),
-                  IconButton(onPressed: () => {}, icon: Icon(Icons.menu, color: Colors.red))
-                ],
-              ),
-              Column(children: itemsList,),
-              SizedBox(height: 80),
-              TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (__) => MapaPage())), child: Text("Solicitar Ubicación")),
-              SizedBox(height: 100,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Kilos Totales"),
-                  Text(items.fold<int>(0, (previousValue, element) => previousValue += element.peso).toString())
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Cantidad de Items"),
-                  Text(items.fold<int>(0, (previousValue, element) => previousValue += element.quantity).toString())
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Total: "),
-                  Text("${items.fold<int>(0, (previousValue, element) => previousValue += element.peso)} KG")
-                ],
-              ),
-              TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (__) => HorarioPage())), child: Text("Seleccionar horario de retiro")),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 10
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_left)),
+                    Text("Tu carro ecológico"),
+                    IconButton(onPressed: () => {}, icon: Icon(Icons.menu, color: Colors.red))
+                  ],
+                ),
+                Column(children: itemsList,),
+                SizedBox(height: 80),
+                TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (__) => MapaPage())), child: Text("Solicitar Ubicación")),
+                SizedBox(height: 100,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Kilos Totales"),
+                    Text(items.fold<int>(0, (previousValue, element) => previousValue += element.peso).toString())
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Cantidad de Items"),
+                    Text(items.fold<int>(0, (previousValue, element) => previousValue += element.quantity).toString())
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Total: "),
+                    Text("${items.fold<int>(0, (previousValue, element) => previousValue += element.peso)} KG")
+                  ],
+                ),
+                TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (__) => HorarioPage())), child: Text("Seleccionar horario de retiro")),
+              ],
+            ),
           ),
         ),
       ),
