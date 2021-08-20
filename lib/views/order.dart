@@ -75,12 +75,27 @@ class _OrderPageState extends State<OrderPage> {
                           children: [
                             TextButton(
                               onPressed: () => setState(() => quantity =  (quantity! - 1).clamp(0, 2000000)), 
-                              child: Text("-")
+                              child: Text(
+                                "-",
+                                style: TextStyle(
+                                  fontSize: 28
+                                )
+                              )
                             ),
-                            Text(quantity.toString()),
+                            Text(
+                              quantity.toString(),
+                              style: TextStyle(
+                                fontSize: 28
+                              )
+                            ),
                             TextButton(
                               onPressed: () => setState(() => quantity = quantity! + 1), 
-                              child: Text("+")
+                              child: Text(
+                                "+",
+                                style: TextStyle(
+                                  fontSize: 28
+                                )
+                              )
                             )
                           ],
                         ),

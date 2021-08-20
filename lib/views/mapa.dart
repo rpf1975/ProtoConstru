@@ -23,9 +23,9 @@ class _MapaPageState extends State<MapaPage> {
   {
     _controller = _cntlr;
     _location.onLocationChanged.listen((l) { 
-      if(markers.length > 4){return;}
-      double finalLat = l.latitude! + Random().nextInt(10)/100;
-      double finalLong = l.longitude! + Random().nextInt(10)/100;
+      if(markers.length > 3){return;}
+      double finalLat = l.latitude! + Random().nextInt(5)/100;
+      double finalLong = l.longitude! + Random().nextInt(5)/100;
       if(markers.length <= 0){
         _add(l.latitude!, l.longitude!);
       }
