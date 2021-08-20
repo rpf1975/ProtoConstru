@@ -2,10 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_applicatio_prototipo_extremo/classes/item_result.dart';
+import 'package:flutter_applicatio_prototipo_extremo/views/order.dart';
 import 'package:flutter_applicatio_prototipo_extremo/views/widgets/topbar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  HomePage({ Key? key }) : super(key: key);
+
+  final peso = Random().nextInt(90) + 10;
+
+  final Map<String, ItemResult?>results = {
+    "madera": ItemResult("", 0, 0)
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +53,33 @@ class HomePage extends StatelessWidget {
                   TextButton(onPressed: () => {}, child: Text("Ver todos >"))
                 ],
               ),
-              Card(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Image(image: AssetImage("assets/madera.png"),),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Restos de tablones"),
-                          Text("${Random().nextInt(90) + 10} Kg"),
-                        ]
-                      ),
-                      Text("Estado limpio") // TODO: Limpio, sucio, ...
-                    ],
+              TextButton(
+                onPressed: () async {
+                  var result = await Navigator.of(context).push(MaterialPageRoute(builder: (__) => OrderPage(peso: peso, initialQuantity: results["madera"]!.quantity)));
+                  try{
+                    if(result != null){
+                      ItemResult itemResult = result as ItemResult;
+                      results["madera"] = itemResult;
+                    }
+                  }catch(Exception){}
+                },
+                child: Card(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Image(image: AssetImage("assets/madera.png"),),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Restos de tablones"),
+                            Text("$peso Kg"), // TODO: Cambiar numero como variable
+                          ]
+                        ),
+                        Text("Estado limpio") // TODO: Limpio, sucio, ...
+                      ],
+                    ),
                   ),
                 ),
               )
